@@ -7,9 +7,12 @@ import java.io.IOException;
 
 public class Tiempo {
    public static void main(String[] args) throws IOException {
-       Document doc=Jsoup.connect("http://www.google.com").userAgent("Mozilla").get();
+       Document doc=Jsoup.connect("https://weather.com/es-ES/tiempo/hoy/l/SPXX0084:1:SP").userAgent("Mozilla").get();
        Elements elemento = doc.getElementsByClass("today_nowcard-temp");
+       Elements clima = doc.getElementsByClass("today_nowcard-phrase");
+       String titulo = doc.title();
        String texto=elemento.text();
-       System.out.println(texto);
+       String frase= clima.text();
+       System.out.println(titulo + "\n" + frase + "\n"+ texto);
     }
 }
